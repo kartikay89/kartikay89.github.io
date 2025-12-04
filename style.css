@@ -1,3 +1,46 @@
+/* Top Navigation Bar */
+.topbar {
+    background-color: #333;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 20px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 20px 25px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.nav-link:hover {
+    background-color: #555;
+}
+
+.nav-link.active {
+    background-color: #4CAF50;
+}
+
+/* Add padding to body to account for fixed navbar */
+body {
+    margin: 0;
+    padding-top: 60px;
+}
+
 #Pbar{
     background-color: aqua;
     border: 5px solid;
