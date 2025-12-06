@@ -3,7 +3,7 @@
 ## Vision
 Create a professional, performant, and accessible personal portfolio website that showcases projects, shares knowledge through blog posts, and serves as a central hub for professional presence.
 
-## Phase 1: Foundation (Week 1-2) ✓ In Progress
+## Phase 1: Foundation (Week 1-2) 🔄 In Progress
 
 ### Goals
 - Establish basic site structure
