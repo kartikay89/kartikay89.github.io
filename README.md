@@ -14,9 +14,19 @@ This project is currently under active development. See the roadmap and task lis
 
 This repository includes comprehensive planning documents to guide development:
 
-- **[DEVELOPMENT_TASKS.md](DEVELOPMENT_TASKS.md)** - Comprehensive list of all recommended development tasks organized by priority and category
-- **[TODO.md](TODO.md)** - Actionable checklist of immediate and upcoming tasks
-- **[ROADMAP.md](ROADMAP.md)** - Phased development roadmap with timelines and success metrics
+### Start Here
+- **[QUICK_START_GUIDE.md](QUICK_START_GUIDE.md)** - 🚀 **START HERE** - How to use all the planning documents and get started
+- **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** - High-level project summary and current status
+
+### Daily Use
+- **[TODO.md](TODO.md)** - ✅ Actionable checklist of immediate and upcoming tasks (use this daily!)
+
+### Planning & Reference
+- **[DEVELOPMENT_TASKS.md](DEVELOPMENT_TASKS.md)** - 📚 Complete library of 100+ development tasks organized by category
+- **[ROADMAP.md](ROADMAP.md)** - 🗺️ 8-phase development roadmap with timelines and success metrics
+
+### Task Management
+- **[.github/ISSUE_TEMPLATE/](/.github/ISSUE_TEMPLATE/development-task.md)** - Template for creating structured GitHub issues
 
 ## 🚀 Quick Start
 
