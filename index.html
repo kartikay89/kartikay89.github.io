@@ -12,6 +12,7 @@
             <div class="nav-container">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#projects" class="nav-link">My Projects</a>
+                <a href="#templates" class="nav-link">Templates</a>
                 <a href="#about" class="nav-link">About me</a>
             </div>
         </nav>
@@ -26,17 +27,172 @@
                 </p>
                 <div class="hero-actions" aria-label="Homepage actions">
                     <a href="#projects" class="button primary-button">View Projects</a>
+                    <a href="#templates" class="button secondary-button">Shop Templates</a>
                     <a href="#about" class="button secondary-button">About Me</a>
                 </div>
             </section>
 
             <section id="projects" class="content-section" aria-labelledby="projects-title">
-                <p class="section-label">My Projects</p>
-                <h2 id="projects-title">A place for the work I am building.</h2>
-                <p>
-                    This section can grow into featured projects, case studies, or links to live work
-                    as the portfolio expands.
-                </p>
+                <div class="section-header">
+                    <div>
+                        <p class="section-label">My Projects</p>
+                        <h2 id="projects-title">Swipe through featured work.</h2>
+                    </div>
+                    <div class="carousel-controls" aria-label="Project carousel controls">
+                        <button class="carousel-button" type="button" data-carousel-prev aria-label="Previous project">Prev</button>
+                        <button class="carousel-button" type="button" data-carousel-next aria-label="Next project">Next</button>
+                    </div>
+                </div>
+
+                <div class="project-carousel" data-project-carousel tabindex="0" aria-label="Featured project cards">
+                    <article class="project-card">
+                        <p class="project-number">01</p>
+                        <h3>Portfolio Website</h3>
+                        <p>
+                            A personal portfolio with a warm visual identity, clean sections, and
+                            responsive navigation for presenting projects clearly.
+                        </p>
+                        <div class="project-tags" aria-label="Technologies used">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Design</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <p class="project-number">02</p>
+                        <h3>Product Landing Page</h3>
+                        <p>
+                            A polished landing page concept focused on strong spacing, clear actions,
+                            and a layout that works across desktop and mobile screens.
+                        </p>
+                        <div class="project-tags" aria-label="Technologies used">
+                            <span>UI</span>
+                            <span>Responsive</span>
+                            <span>CSS</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <p class="project-number">03</p>
+                        <h3>Blog Layout</h3>
+                        <p>
+                            A readable blog interface with balanced typography, article previews, and
+                            a simple structure for sharing ideas and updates.
+                        </p>
+                        <div class="project-tags" aria-label="Technologies used">
+                            <span>Content</span>
+                            <span>Layout</span>
+                            <span>HTML</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <p class="project-number">04</p>
+                        <h3>Mini Web App</h3>
+                        <p>
+                            A small interactive app concept for practicing JavaScript behavior,
+                            component states, and user-friendly feedback.
+                        </p>
+                        <div class="project-tags" aria-label="Technologies used">
+                            <span>JavaScript</span>
+                            <span>Interaction</span>
+                            <span>UX</span>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="carousel-dots" data-carousel-dots aria-label="Project carousel position"></div>
+            </section>
+
+            <section id="templates" class="content-section templates-section" aria-labelledby="templates-title">
+                <div class="section-header">
+                    <div>
+                        <p class="section-label">Website templates</p>
+                        <h2 id="templates-title">Ready-to-use templates for sale.</h2>
+                    </div>
+                    <p class="section-intro">
+                        Pick a polished starter site, customize the content, and launch faster with
+                        responsive HTML, CSS, and JavaScript included.
+                    </p>
+                </div>
+
+                <div class="template-grid" aria-label="Website templates for sale">
+                    <article class="template-card">
+                        <div class="template-preview portfolio-preview" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="template-card-body">
+                            <p class="template-type">Creator portfolio</p>
+                            <h3>Studio Portfolio</h3>
+                            <p>
+                                A clean personal site for designers, students, and freelancers who
+                                want to show projects, skills, and contact details with confidence.
+                            </p>
+                            <ul class="template-features">
+                                <li>Project showcase sections</li>
+                                <li>About and contact layout</li>
+                                <li>Mobile-first styling</li>
+                            </ul>
+                        </div>
+                        <div class="template-purchase">
+                            <p class="template-price">$29</p>
+                            <a class="button primary-button" href="mailto:kartikay@example.com?subject=Studio%20Portfolio%20template">Buy Template</a>
+                        </div>
+                    </article>
+
+                    <article class="template-card featured-template">
+                        <div class="template-preview business-preview" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="template-card-body">
+                            <p class="template-type">Small business</p>
+                            <h3>Launch Service</h3>
+                            <p>
+                                A conversion-focused landing page for local businesses, consultants,
+                                and service brands that need clear offers and strong calls to action.
+                            </p>
+                            <ul class="template-features">
+                                <li>Hero and service blocks</li>
+                                <li>Pricing-ready section</li>
+                                <li>Lead capture structure</li>
+                            </ul>
+                        </div>
+                        <div class="template-purchase">
+                            <p class="template-price">$39</p>
+                            <a class="button primary-button" href="mailto:kartikay@example.com?subject=Launch%20Service%20template">Buy Template</a>
+                        </div>
+                    </article>
+
+                    <article class="template-card">
+                        <div class="template-preview shop-preview" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="template-card-body">
+                            <p class="template-type">Online shop</p>
+                            <h3>Product Shelf</h3>
+                            <p>
+                                A modern storefront starter for digital products, template packs, and
+                                small catalogs with organized cards and product detail sections.
+                            </p>
+                            <ul class="template-features">
+                                <li>Product grid layout</li>
+                                <li>Feature comparison blocks</li>
+                                <li>Checkout link placeholders</li>
+                            </ul>
+                        </div>
+                        <div class="template-purchase">
+                            <p class="template-price">$49</p>
+                            <a class="button primary-button" href="mailto:kartikay@example.com?subject=Product%20Shelf%20template">Buy Template</a>
+                        </div>
+                    </article>
+                </div>
             </section>
 
             <section id="about" class="content-section" aria-labelledby="about-title">
