@@ -1,210 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-        <title>Kartikay Singh - Portfolio</title>
-    </head>
-    <body>
-        <nav class="topbar" aria-label="Primary navigation">
-            <a href="#home" class="brand">Kartikay Singh</a>
-            <div class="nav-container">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#projects" class="nav-link">My Projects</a>
-                <a href="#templates" class="nav-link">Templates</a>
-                <a href="#about" class="nav-link">About me</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kartikay Singh — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#home" class="nav__brand">KS</a>
+      <ul class="nav__links">
+        <li><a href="#home"      class="nav__link active">Home</a></li>
+        <li><a href="#projects"  class="nav__link">Projects</a></li>
+        <li><a href="#templates" class="nav__link">Templates</a></li>
+        <li><a href="#about"     class="nav__link">About</a></li>
+      </ul>
+      <a href="#about" class="nav__cta">Get in touch</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__orb hero__orb--1"></div>
+        <div class="hero__orb hero__orb--2"></div>
+        <div class="hero__orb hero__orb--3"></div>
+      </div>
+      <div class="container hero__content">
+        <span class="eyebrow">Portfolio</span>
+        <h1 class="hero__title">
+          Hi, I am<br>
+          <span class="gradient-text">Kartikay Singh.</span>
+        </h1>
+        <p class="hero__sub">I create thoughtful, clean digital experiences and keep learning through projects that combine design, code, and practical problem solving.</p>
+        <div class="hero__actions">
+          <a href="#projects"  class="btn btn--primary">View Projects</a>
+          <a href="#templates" class="btn btn--ghost">Shop Templates</a>
+          <a href="#about"     class="btn btn--text">About Me &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section__hd">
+          <span class="eyebrow">My Projects</span>
+          <h2 class="section__title">Swipe through featured work.</h2>
+        </div>
+      </div>
+
+      <div class="carousel" id="carousel" tabindex="0" aria-label="Project carousel">
+        <article class="pcard">
+          <span class="pcard__num">01</span>
+          <div class="pcard__body">
+            <h3 class="pcard__title">Portfolio Website</h3>
+            <p class="pcard__desc">A clean, fully responsive personal portfolio built from scratch with a focus on typography and white space. No frameworks &mdash; just HTML, CSS, and a bit of JavaScript.</p>
+            <div class="pcard__tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Design</span>
             </div>
-        </nav>
+          </div>
+        </article>
 
-        <main>
-            <section id="home" class="hero" aria-labelledby="hero-title">
-                <p class="eyebrow">Portfolio</p>
-                <h1 id="hero-title">Hi, I am Kartikay Singh.</h1>
-                <p class="hero-copy">
-                    I create thoughtful, clean digital experiences and keep learning through projects
-                    that combine design, code, and practical problem solving.
-                </p>
-                <div class="hero-actions" aria-label="Homepage actions">
-                    <a href="#projects" class="button primary-button">View Projects</a>
-                    <a href="#templates" class="button secondary-button">Shop Templates</a>
-                    <a href="#about" class="button secondary-button">About Me</a>
-                </div>
-            </section>
+        <article class="pcard">
+          <span class="pcard__num">02</span>
+          <div class="pcard__body">
+            <h3 class="pcard__title">Product Landing Page</h3>
+            <p class="pcard__desc">A high-converting landing page for a fictional product. Features a hero section, feature grid, testimonials, and a call-to-action block with a mobile-first layout.</p>
+            <div class="pcard__tags">
+              <span class="tag">UI</span><span class="tag">Responsive</span><span class="tag">CSS</span>
+            </div>
+          </div>
+        </article>
 
-            <section id="projects" class="content-section" aria-labelledby="projects-title">
-                <div class="section-header">
-                    <div>
-                        <p class="section-label">My Projects</p>
-                        <h2 id="projects-title">Swipe through featured work.</h2>
-                    </div>
-                    <div class="carousel-controls" aria-label="Project carousel controls">
-                        <button class="carousel-button" type="button" data-carousel-prev aria-label="Previous project">Prev</button>
-                        <button class="carousel-button" type="button" data-carousel-next aria-label="Next project">Next</button>
-                    </div>
-                </div>
+        <article class="pcard">
+          <span class="pcard__num">03</span>
+          <div class="pcard__body">
+            <h3 class="pcard__title">Blog Layout</h3>
+            <p class="pcard__desc">A structured blog layout with sidebar navigation, post previews, and a clean reading view. Designed for readability with optimised line length and spacing.</p>
+            <div class="pcard__tags">
+              <span class="tag">Content</span><span class="tag">Layout</span><span class="tag">HTML</span>
+            </div>
+          </div>
+        </article>
 
-                <div class="project-carousel" data-project-carousel tabindex="0" aria-label="Featured project cards">
-                    <article class="project-card">
-                        <p class="project-number">01</p>
-                        <h3>Portfolio Website</h3>
-                        <p>
-                            A personal portfolio with a warm visual identity, clean sections, and
-                            responsive navigation for presenting projects clearly.
-                        </p>
-                        <div class="project-tags" aria-label="Technologies used">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>Design</span>
-                        </div>
-                    </article>
+        <article class="pcard">
+          <span class="pcard__num">04</span>
+          <div class="pcard__body">
+            <h3 class="pcard__title">Mini Web App</h3>
+            <p class="pcard__desc">A small interactive browser-based tool. Focused on clean state management, clear UI feedback, and making JavaScript feel natural through thoughtful interactions.</p>
+            <div class="pcard__tags">
+              <span class="tag">JavaScript</span><span class="tag">Interaction</span><span class="tag">UX</span>
+            </div>
+          </div>
+        </article>
+      </div>
 
-                    <article class="project-card">
-                        <p class="project-number">02</p>
-                        <h3>Product Landing Page</h3>
-                        <p>
-                            A polished landing page concept focused on strong spacing, clear actions,
-                            and a layout that works across desktop and mobile screens.
-                        </p>
-                        <div class="project-tags" aria-label="Technologies used">
-                            <span>UI</span>
-                            <span>Responsive</span>
-                            <span>CSS</span>
-                        </div>
-                    </article>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prevBtn" aria-label="Previous project">&#8592;</button>
+        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Project indicators"></div>
+        <button class="carousel-btn" id="nextBtn" aria-label="Next project">&#8594;</button>
+      </div>
+    </section>
 
-                    <article class="project-card">
-                        <p class="project-number">03</p>
-                        <h3>Blog Layout</h3>
-                        <p>
-                            A readable blog interface with balanced typography, article previews, and
-                            a simple structure for sharing ideas and updates.
-                        </p>
-                        <div class="project-tags" aria-label="Technologies used">
-                            <span>Content</span>
-                            <span>Layout</span>
-                            <span>HTML</span>
-                        </div>
-                    </article>
+    <!-- Templates -->
+    <section id="templates" class="section section--alt">
+      <div class="container">
+        <div class="section__hd">
+          <span class="eyebrow">Website Templates</span>
+          <h2 class="section__title">Ready-to-use templates for sale.</h2>
+          <p class="section__desc">Each template is hand-crafted with clean HTML and CSS. You get the full source files, a clear folder structure, and a layout you can start using right away.</p>
+        </div>
 
-                    <article class="project-card">
-                        <p class="project-number">04</p>
-                        <h3>Mini Web App</h3>
-                        <p>
-                            A small interactive app concept for practicing JavaScript behavior,
-                            component states, and user-friendly feedback.
-                        </p>
-                        <div class="project-tags" aria-label="Technologies used">
-                            <span>JavaScript</span>
-                            <span>Interaction</span>
-                            <span>UX</span>
-                        </div>
-                    </article>
-                </div>
+        <div class="tgrid">
 
-                <div class="carousel-dots" data-carousel-dots aria-label="Project carousel position"></div>
-            </section>
+          <!-- Template 1 -->
+          <div class="tcard">
+            <div class="tcard__preview tcard__preview--portfolio" aria-hidden="true">
+              <div class="tp tp--violet"></div>
+              <div class="tp tp--dim"></div>
+              <div class="tp tp--cyan"></div>
+              <div class="tp tp--outline"></div>
+            </div>
+            <div class="tcard__body">
+              <span class="tcard__type">Creator Portfolio</span>
+              <h3 class="tcard__title">Studio Portfolio</h3>
+              <p class="tcard__desc">A minimal portfolio layout built for creatives who want their work to speak for itself.</p>
+              <ul class="tcard__list">
+                <li>Project showcase sections</li>
+                <li>About &amp; contact layout</li>
+                <li>Mobile-first styling</li>
+              </ul>
+              <div class="tcard__foot">
+                <span class="tcard__price">$29</span>
+                <a href="mailto:kartikay@example.com?subject=Studio Portfolio Template" class="btn btn--primary btn--sm">Buy Template</a>
+              </div>
+            </div>
+          </div>
 
-            <section id="templates" class="content-section templates-section" aria-labelledby="templates-title">
-                <div class="section-header">
-                    <div>
-                        <p class="section-label">Website templates</p>
-                        <h2 id="templates-title">Ready-to-use templates for sale.</h2>
-                    </div>
-                    <p class="section-intro">
-                        Pick a polished starter site, customize the content, and launch faster with
-                        responsive HTML, CSS, and JavaScript included.
-                    </p>
-                </div>
+          <!-- Template 2 (Featured) -->
+          <div class="tcard tcard--featured">
+            <div class="tcard__badge">Featured</div>
+            <div class="tcard__preview tcard__preview--business" aria-hidden="true">
+              <div class="tp tp--violet tp--wide"></div>
+              <div class="tp tp--dim"></div>
+              <div class="tp tp--cyan"></div>
+            </div>
+            <div class="tcard__body">
+              <span class="tcard__type">Small Business</span>
+              <h3 class="tcard__title">Launch Service</h3>
+              <p class="tcard__desc">Everything a small service business needs to launch online quickly and professionally.</p>
+              <ul class="tcard__list">
+                <li>Hero and service blocks</li>
+                <li>Pricing-ready sections</li>
+                <li>Lead capture structure</li>
+              </ul>
+              <div class="tcard__foot">
+                <span class="tcard__price">$39</span>
+                <a href="mailto:kartikay@example.com?subject=Launch Service Template" class="btn btn--primary btn--sm">Buy Template</a>
+              </div>
+            </div>
+          </div>
 
-                <div class="template-grid" aria-label="Website templates for sale">
-                    <article class="template-card">
-                        <div class="template-preview portfolio-preview" aria-hidden="true">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="template-card-body">
-                            <p class="template-type">Creator portfolio</p>
-                            <h3>Studio Portfolio</h3>
-                            <p>
-                                A clean personal site for designers, students, and freelancers who
-                                want to show projects, skills, and contact details with confidence.
-                            </p>
-                            <ul class="template-features">
-                                <li>Project showcase sections</li>
-                                <li>About and contact layout</li>
-                                <li>Mobile-first styling</li>
-                            </ul>
-                        </div>
-                        <div class="template-purchase">
-                            <p class="template-price">$29</p>
-                            <a class="button primary-button" href="mailto:kartikay@example.com?subject=Studio%20Portfolio%20template">Buy Template</a>
-                        </div>
-                    </article>
+          <!-- Template 3 -->
+          <div class="tcard">
+            <div class="tcard__preview tcard__preview--shop" aria-hidden="true">
+              <div class="tp tp--violet"></div>
+              <div class="tp tp--dim"></div>
+              <div class="tp tp--dim"></div>
+              <div class="tp tp--cyan"></div>
+              <div class="tp tp--outline"></div>
+              <div class="tp tp--outline"></div>
+            </div>
+            <div class="tcard__body">
+              <span class="tcard__type">Online Shop</span>
+              <h3 class="tcard__title">Product Shelf</h3>
+              <p class="tcard__desc">A sleek product display layout that makes it easy to show what you sell and convert browsers into buyers.</p>
+              <ul class="tcard__list">
+                <li>Product grid layout</li>
+                <li>Feature comparison section</li>
+                <li>Checkout link structure</li>
+              </ul>
+              <div class="tcard__foot">
+                <span class="tcard__price">$49</span>
+                <a href="mailto:kartikay@example.com?subject=Product Shelf Template" class="btn btn--primary btn--sm">Buy Template</a>
+              </div>
+            </div>
+          </div>
 
-                    <article class="template-card featured-template">
-                        <div class="template-preview business-preview" aria-hidden="true">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="template-card-body">
-                            <p class="template-type">Small business</p>
-                            <h3>Launch Service</h3>
-                            <p>
-                                A conversion-focused landing page for local businesses, consultants,
-                                and service brands that need clear offers and strong calls to action.
-                            </p>
-                            <ul class="template-features">
-                                <li>Hero and service blocks</li>
-                                <li>Pricing-ready section</li>
-                                <li>Lead capture structure</li>
-                            </ul>
-                        </div>
-                        <div class="template-purchase">
-                            <p class="template-price">$39</p>
-                            <a class="button primary-button" href="mailto:kartikay@example.com?subject=Launch%20Service%20template">Buy Template</a>
-                        </div>
-                    </article>
+        </div>
+      </div>
+    </section>
 
-                    <article class="template-card">
-                        <div class="template-preview shop-preview" aria-hidden="true">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="template-card-body">
-                            <p class="template-type">Online shop</p>
-                            <h3>Product Shelf</h3>
-                            <p>
-                                A modern storefront starter for digital products, template packs, and
-                                small catalogs with organized cards and product detail sections.
-                            </p>
-                            <ul class="template-features">
-                                <li>Product grid layout</li>
-                                <li>Feature comparison blocks</li>
-                                <li>Checkout link placeholders</li>
-                            </ul>
-                        </div>
-                        <div class="template-purchase">
-                            <p class="template-price">$49</p>
-                            <a class="button primary-button" href="mailto:kartikay@example.com?subject=Product%20Shelf%20template">Buy Template</a>
-                        </div>
-                    </article>
-                </div>
-            </section>
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="about">
+          <div class="about__content">
+            <span class="eyebrow">About me</span>
+            <h2 class="section__title">Focused on learning,<br>building, and improving.</h2>
+            <p class="about__text">I am interested in creating useful websites and applications with a clean visual style, clear structure, and reliable user experience. Every project is an opportunity to learn something new and apply it meaningfully.</p>
+            <a href="mailto:kartikay@example.com" class="btn btn--primary">Get in touch &rarr;</a>
+          </div>
 
-            <section id="about" class="content-section" aria-labelledby="about-title">
-                <p class="section-label">About me</p>
-                <h2 id="about-title">Focused on learning, building, and improving.</h2>
-                <p>
-                    I am interested in creating useful websites and applications with a clean visual
-                    style, clear structure, and reliable user experience.
-                </p>
-            </section>
-        </main>
+          <div class="about__stats" aria-hidden="true">
+            <div class="stat">
+              <span class="stat__num gradient-text">4+</span>
+              <span class="stat__label">Projects Built</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num gradient-text">3</span>
+              <span class="stat__label">Templates Available</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num gradient-text">&#8734;</span>
+              <span class="stat__label">Things to Learn</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <script src="script.js" defer></script>
-    </body>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__name">Kartikay Singh</span>
+      <span class="footer__copy">&copy; 2025 &mdash; Built with care</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
