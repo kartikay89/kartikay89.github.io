@@ -11,14 +11,15 @@
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#home" class="nav__brand">KS</a>
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand">KS</a>
       <ul class="nav__links">
         <li><a href="#home"      class="nav__link active">Home</a></li>
         <li><a href="#projects"  class="nav__link">Projects</a></li>
         <li><a href="#templates" class="nav__link">Templates</a></li>
+        <li><a href="blog.html"  class="nav__link">Blog</a></li>
+        <li><a href="notes.html" class="nav__link">Notes</a></li>
         <li><a href="#about"     class="nav__link">About</a></li>
       </ul>
       <a href="#about" class="nav__cta">Get in touch</a>
@@ -29,11 +30,6 @@
 
     <!-- Hero -->
     <section id="home" class="hero">
-      <div class="hero__bg" aria-hidden="true">
-        <div class="hero__orb hero__orb--1"></div>
-        <div class="hero__orb hero__orb--2"></div>
-        <div class="hero__orb hero__orb--3"></div>
-      </div>
       <div class="container hero__content">
         <span class="eyebrow">Portfolio</span>
         <h1 class="hero__title">
@@ -121,13 +117,11 @@
         </div>
 
         <div class="tgrid">
-
-          <!-- Template 1 -->
           <div class="tcard">
             <div class="tcard__preview tcard__preview--portfolio" aria-hidden="true">
-              <div class="tp tp--violet"></div>
+              <div class="tp tp--navy"></div>
               <div class="tp tp--dim"></div>
-              <div class="tp tp--cyan"></div>
+              <div class="tp tp--blue"></div>
               <div class="tp tp--outline"></div>
             </div>
             <div class="tcard__body">
@@ -146,13 +140,12 @@
             </div>
           </div>
 
-          <!-- Template 2 (Featured) -->
           <div class="tcard tcard--featured">
             <div class="tcard__badge">Featured</div>
             <div class="tcard__preview tcard__preview--business" aria-hidden="true">
-              <div class="tp tp--violet tp--wide"></div>
+              <div class="tp tp--navy tp--wide"></div>
               <div class="tp tp--dim"></div>
-              <div class="tp tp--cyan"></div>
+              <div class="tp tp--blue"></div>
             </div>
             <div class="tcard__body">
               <span class="tcard__type">Small Business</span>
@@ -170,13 +163,12 @@
             </div>
           </div>
 
-          <!-- Template 3 -->
           <div class="tcard">
             <div class="tcard__preview tcard__preview--shop" aria-hidden="true">
-              <div class="tp tp--violet"></div>
+              <div class="tp tp--navy"></div>
               <div class="tp tp--dim"></div>
               <div class="tp tp--dim"></div>
-              <div class="tp tp--cyan"></div>
+              <div class="tp tp--blue"></div>
               <div class="tp tp--outline"></div>
               <div class="tp tp--outline"></div>
             </div>
@@ -195,7 +187,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -211,7 +202,7 @@
             <a href="mailto:kartikay@example.com" class="btn btn--primary">Get in touch &rarr;</a>
           </div>
 
-          <div class="about__stats" aria-hidden="true">
+          <div class="about__stats">
             <div class="stat">
               <span class="stat__num gradient-text">4+</span>
               <span class="stat__label">Projects Built</span>
@@ -231,10 +222,13 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container footer__inner">
       <span class="footer__name">Kartikay Singh</span>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="blog.html"  class="footer__link">Blog</a>
+        <a href="notes.html" class="footer__link">Notes</a>
+      </nav>
       <span class="footer__copy">&copy; 2025 &mdash; Built with care</span>
     </div>
   </footer>

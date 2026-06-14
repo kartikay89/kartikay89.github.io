@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes — Kartikay Singh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand">KS</a>
+      <ul class="nav__links">
+        <li><a href="index.html"           class="nav__link">Home</a></li>
+        <li><a href="index.html#projects"  class="nav__link">Projects</a></li>
+        <li><a href="index.html#templates" class="nav__link">Templates</a></li>
+        <li><a href="blog.html"            class="nav__link">Blog</a></li>
+        <li><a href="notes.html"           class="nav__link active">Notes</a></li>
+        <li><a href="index.html#about"     class="nav__link">About</a></li>
+      </ul>
+      <a href="index.html#about" class="nav__cta">Get in touch</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Second Brain</span>
+        <h1 class="page-hero__title">Notes</h1>
+        <p class="page-hero__sub">A running collection of things I keep coming back to &mdash; references, patterns, and half-formed ideas. Rough by design.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="notes-grid">
+
+          <!-- CSS -->
+          <a href="#" class="note-card" style="--note-color: #2563eb;">
+            <span class="note-card__cat">CSS</span>
+            <h2 class="note-card__title">CSS Layout Reference</h2>
+            <p class="note-card__desc">A running collection of grid and flexbox patterns: centering tricks, responsive column layouts, sticky footers, and common gotchas.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Mar 2025</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <a href="#" class="note-card" style="--note-color: #2563eb;">
+            <span class="note-card__cat">CSS</span>
+            <h2 class="note-card__title">Custom Property Patterns</h2>
+            <p class="note-card__desc">How I structure design tokens with CSS variables: naming conventions, theming strategies, and making the cascade work for you.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Feb 2025</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <!-- JavaScript -->
+          <a href="#" class="note-card" style="--note-color: #d97706;">
+            <span class="note-card__cat">JavaScript</span>
+            <h2 class="note-card__title">DOM Patterns</h2>
+            <p class="note-card__desc">Event delegation, efficient querying, minimal state management, and the handful of native APIs that remove the need for a library.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Feb 2025</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <a href="#" class="note-card" style="--note-color: #d97706;">
+            <span class="note-card__cat">JavaScript</span>
+            <h2 class="note-card__title">Async &amp; Fetch</h2>
+            <p class="note-card__desc">Promise chains, async/await patterns, and graceful error handling for API calls. Includes a reusable fetch wrapper I keep reusing.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Jan 2025</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <!-- Design -->
+          <a href="#" class="note-card" style="--note-color: #059669;">
+            <span class="note-card__cat">Design</span>
+            <h2 class="note-card__title">Typography Scale</h2>
+            <p class="note-card__desc">My go-to modular type scale, line-height values by size, and pairing rules I use to make headings and body text work together.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Jan 2025</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <a href="#" class="note-card" style="--note-color: #059669;">
+            <span class="note-card__cat">Design</span>
+            <h2 class="note-card__title">Colour &amp; Contrast</h2>
+            <p class="note-card__desc">WCAG contrast ratios, colour psychology basics, building accessible palettes, and why I always check contrast before shipping.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Dec 2024</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <!-- Accessibility -->
+          <a href="#" class="note-card" style="--note-color: #dc2626;">
+            <span class="note-card__cat">Accessibility</span>
+            <h2 class="note-card__title">ARIA Cheatsheet</h2>
+            <p class="note-card__desc">The handful of ARIA roles, labels, and live regions I use most often, with copy-paste examples and notes on when not to use them.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Dec 2024</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <!-- Process -->
+          <a href="#" class="note-card" style="--note-color: #7c3aed;">
+            <span class="note-card__cat">Process</span>
+            <h2 class="note-card__title">Git Workflow</h2>
+            <p class="note-card__desc">My branch naming conventions, commit message format, and pull request routine. Simple enough to follow without thinking.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Nov 2024</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+          <a href="#" class="note-card" style="--note-color: #7c3aed;">
+            <span class="note-card__cat">Process</span>
+            <h2 class="note-card__title">Performance Basics</h2>
+            <p class="note-card__desc">Core Web Vitals explained simply, image optimisation steps, and the quick wins I check before calling a frontend build done.</p>
+            <div class="note-card__foot">
+              <span class="note-card__date">Updated Nov 2024</span>
+              <span class="note-card__arrow">&#8599;</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__name">Kartikay Singh</span>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="blog.html"  class="footer__link">Blog</a>
+        <a href="notes.html" class="footer__link">Notes</a>
+      </nav>
+      <span class="footer__copy">&copy; 2025 &mdash; Built with care</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
