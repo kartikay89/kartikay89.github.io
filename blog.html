@@ -6,129 +6,98 @@
   <title>Blog — Kartikay Singh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <nav class="nav">
-    <div class="nav__inner container">
-      <a href="index.html" class="nav__brand">KS</a>
-      <ul class="nav__links">
-        <li><a href="index.html"           class="nav__link">Home</a></li>
-        <li><a href="index.html#projects"  class="nav__link">Projects</a></li>
-        <li><a href="index.html#templates" class="nav__link">Templates</a></li>
-        <li><a href="blog.html"            class="nav__link active">Blog</a></li>
-        <li><a href="notes.html"           class="nav__link">Notes</a></li>
-        <li><a href="index.html#about"     class="nav__link">About</a></li>
-      </ul>
-      <a href="index.html#about" class="nav__cta">Get in touch</a>
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand">Kartikay</a>
+      <div class="nav__links">
+        <a href="index.html#about"    class="nav__link">About</a>
+        <a href="index.html#projects" class="nav__link">Projects</a>
+        <a href="blog.html"           class="nav__link active">Blog</a>
+        <a href="notes.html"          class="nav__link">Notes</a>
+        <a href="index.html#contact"  class="nav__link">Contact</a>
+      </div>
     </div>
   </nav>
 
   <main>
 
     <section class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Writing</span>
+      <div class="page-hero__inner">
+        <div class="section-label">
+          <div class="section-label__line"></div>
+          <span class="section-label__text">Writing</span>
+        </div>
         <h1 class="page-hero__title">Blog</h1>
-        <p class="page-hero__sub">Thoughts on design, code, and the things I am learning along the way.</p>
+        <p class="page-hero__sub">Thoughts on data engineering, game development, and the craft of building things that work.</p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="blog-list">
+      <div class="blog-full">
 
-          <article class="blog-post">
-            <div class="blog-post__meta">
-              <time class="blog-post__date" datetime="2025-03">Mar 2025</time>
-              <div class="blog-post__tags">
-                <span class="tag">CSS</span>
-                <span class="tag">Design</span>
-              </div>
-            </div>
-            <div class="blog-post__content">
-              <h2 class="blog-post__title">What I Learned Building My First Landing Page</h2>
-              <p class="blog-post__excerpt">Landing pages look simple until you try to build one. Getting the hero copy tight, the hierarchy clear, and the spacing consistent taught me more about visual design than anything I had read. Here is what changed once I started working instead of studying.</p>
-              <a href="#" class="blog-post__link">Read post &rarr;</a>
-            </div>
-          </article>
+        <a href="#" class="blog-post-row">
+          <span class="blog-post-row__date">Jun 2026</span>
+          <div>
+            <div class="blog-post-row__title">How I structure large-scale ETL pipelines at work</div>
+            <div class="blog-post-row__excerpt">The patterns I keep reaching for when orchestrating data across dozens of source systems — and why I stopped reinventing the wheel.</div>
+          </div>
+          <span class="blog-post-row__arrow">&rarr;</span>
+        </a>
 
-          <article class="blog-post">
-            <div class="blog-post__meta">
-              <time class="blog-post__date" datetime="2025-02">Feb 2025</time>
-              <div class="blog-post__tags">
-                <span class="tag">CSS</span>
-                <span class="tag">Layout</span>
-              </div>
-            </div>
-            <div class="blog-post__content">
-              <h2 class="blog-post__title">CSS Grid vs Flexbox: My Mental Model</h2>
-              <p class="blog-post__excerpt">I used to pick between them at random. Now I have a simple rule: flexbox for one direction, grid for two. It covers 90% of cases and makes the decision almost automatic. This is how I think about it in practice.</p>
-              <a href="#" class="blog-post__link">Read post &rarr;</a>
-            </div>
-          </article>
+        <a href="#" class="blog-post-row">
+          <span class="blog-post-row__date">May 2026</span>
+          <div>
+            <div class="blog-post-row__title">Solo game dev: what nobody tells you about scope</div>
+            <div class="blog-post-row__excerpt">I shipped a game prototype. Here is everything that went wrong with the original plan and how I adjusted to get something playable out the door.</div>
+          </div>
+          <span class="blog-post-row__arrow">&rarr;</span>
+        </a>
 
-          <article class="blog-post">
-            <div class="blog-post__meta">
-              <time class="blog-post__date" datetime="2025-01">Jan 2025</time>
-              <div class="blog-post__tags">
-                <span class="tag">JavaScript</span>
-                <span class="tag">Process</span>
-              </div>
-            </div>
-            <div class="blog-post__content">
-              <h2 class="blog-post__title">Why I Build Without Frameworks First</h2>
-              <p class="blog-post__excerpt">Starting with vanilla HTML, CSS, and JavaScript forces you to understand what a framework is actually solving. Once you feel the friction yourself, the solution makes much more sense and you appreciate the trade-offs better.</p>
-              <a href="#" class="blog-post__link">Read post &rarr;</a>
-            </div>
-          </article>
+        <a href="#" class="blog-post-row">
+          <span class="blog-post-row__date">Apr 2026</span>
+          <div>
+            <div class="blog-post-row__title">Building a second brain as a data engineer</div>
+            <div class="blog-post-row__excerpt">How I use structured notes to retain knowledge across projects, tools, and the constantly shifting data ecosystem.</div>
+          </div>
+          <span class="blog-post-row__arrow">&rarr;</span>
+        </a>
 
-          <article class="blog-post">
-            <div class="blog-post__meta">
-              <time class="blog-post__date" datetime="2024-12">Dec 2024</time>
-              <div class="blog-post__tags">
-                <span class="tag">Design</span>
-                <span class="tag">UX</span>
-              </div>
-            </div>
-            <div class="blog-post__content">
-              <h2 class="blog-post__title">Keeping Interfaces Simple</h2>
-              <p class="blog-post__excerpt">The hardest part of building a UI is resisting the urge to add more. Every element you remove is one less thing the user has to understand. Simplicity is not the absence of thought &mdash; it is the result of it.</p>
-              <a href="#" class="blog-post__link">Read post &rarr;</a>
-            </div>
-          </article>
+        <a href="#" class="blog-post-row">
+          <span class="blog-post-row__date">Mar 2026</span>
+          <div>
+            <div class="blog-post-row__title">Why I prototype games before writing a single line of code</div>
+            <div class="blog-post-row__excerpt">Paper prototyping taught me more about game feel than any tutorial. The insight translates directly to software architecture too.</div>
+          </div>
+          <span class="blog-post-row__arrow">&rarr;</span>
+        </a>
 
-          <article class="blog-post">
-            <div class="blog-post__meta">
-              <time class="blog-post__date" datetime="2024-11">Nov 2024</time>
-              <div class="blog-post__tags">
-                <span class="tag">HTML</span>
-                <span class="tag">Accessibility</span>
-              </div>
-            </div>
-            <div class="blog-post__content">
-              <h2 class="blog-post__title">Semantic HTML Is Not Boring, It Is Foundational</h2>
-              <p class="blog-post__excerpt">Using the right HTML element is one of the highest-leverage decisions you can make. It gives you accessibility, structure, and browser defaults for free. Div soup costs you all three.</p>
-              <a href="#" class="blog-post__link">Read post &rarr;</a>
-            </div>
-          </article>
+        <a href="#" class="blog-post-row">
+          <span class="blog-post-row__date">Feb 2026</span>
+          <div>
+            <div class="blog-post-row__title">SQL is underrated and I will die on this hill</div>
+            <div class="blog-post-row__excerpt">In an era of Python, Spark, and dbt, raw SQL still solves the majority of data transformation problems faster and more legibly than anything else.</div>
+          </div>
+          <span class="blog-post-row__arrow">&rarr;</span>
+        </a>
 
-        </div>
       </div>
     </section>
 
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__name">Kartikay Singh</span>
-      <nav class="footer__nav" aria-label="Footer navigation">
+    <div class="footer__inner">
+      <span class="footer__copy">&copy; 2026 Kartikay</span>
+      <nav class="footer__nav" aria-label="Secondary">
         <a href="blog.html"  class="footer__link">Blog</a>
         <a href="notes.html" class="footer__link">Notes</a>
       </nav>
-      <span class="footer__copy">&copy; 2025 &mdash; Built with care</span>
+      <span class="footer__tagline">Built with intention.</span>
     </div>
   </footer>
 
