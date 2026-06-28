@@ -6,23 +6,22 @@
   <title>Kartikay Singh — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- Nav -->
   <nav class="nav">
-    <div class="nav__inner container">
-      <a href="index.html" class="nav__brand">KS</a>
-      <ul class="nav__links">
-        <li><a href="#home"      class="nav__link active">Home</a></li>
-        <li><a href="#projects"  class="nav__link">Projects</a></li>
-        <li><a href="#templates" class="nav__link">Templates</a></li>
-        <li><a href="blog.html"  class="nav__link">Blog</a></li>
-        <li><a href="notes.html" class="nav__link">Notes</a></li>
-        <li><a href="#about"     class="nav__link">About</a></li>
-      </ul>
-      <a href="#about" class="nav__cta">Get in touch</a>
+    <div class="nav__inner">
+      <a href="#home" class="nav__brand">Kartikay</a>
+      <div class="nav__links">
+        <a href="#about"    class="nav__link">About</a>
+        <a href="#projects" class="nav__link">Projects</a>
+        <a href="blog.html" class="nav__link">Blog</a>
+        <a href="notes.html"class="nav__link">Notes</a>
+        <a href="#contact"  class="nav__link">Contact</a>
+      </div>
     </div>
   </nav>
 
@@ -30,206 +29,269 @@
 
     <!-- Hero -->
     <section id="home" class="hero">
-      <div class="container hero__content">
-        <span class="eyebrow">Portfolio</span>
+      <div class="hero__inner">
+        <div class="role-bar">
+          <div class="role-bar__line"></div>
+          <span class="role-bar__text">Data Engineer &middot; Game Developer &middot; Builder</span>
+        </div>
         <h1 class="hero__title">
-          Hi, I am<br>
-          <span class="gradient-text">Kartikay Singh.</span>
+          I build systems<br>
+          <span class="accent-text">that actually ship.</span>
         </h1>
-        <p class="hero__sub">I create thoughtful, clean digital experiences and keep learning through projects that combine design, code, and practical problem solving.</p>
+        <p class="hero__sub">
+          Hi, I'm Kartikay &mdash; a data engineer by day, game developer by night, and software builder whenever I get the chance. I care about clean systems, good architecture, and finishing things.
+        </p>
         <div class="hero__actions">
-          <a href="#projects"  class="btn btn--primary">View Projects</a>
-          <a href="#templates" class="btn btn--ghost">Shop Templates</a>
-          <a href="#about"     class="btn btn--text">About Me &rarr;</a>
+          <a href="#projects" class="btn btn--primary">See my work</a>
+          <a href="blog.html" class="btn btn--ghost">Read the blog</a>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section__hd">
-          <span class="eyebrow">My Projects</span>
-          <h2 class="section__title">Swipe through featured work.</h2>
-        </div>
-      </div>
-
-      <div class="carousel" id="carousel" tabindex="0" aria-label="Project carousel">
-        <article class="pcard">
-          <span class="pcard__num">01</span>
-          <div class="pcard__body">
-            <h3 class="pcard__title">Portfolio Website</h3>
-            <p class="pcard__desc">A clean, fully responsive personal portfolio built from scratch with a focus on typography and white space. No frameworks &mdash; just HTML, CSS, and a bit of JavaScript.</p>
-            <div class="pcard__tags">
-              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Design</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="pcard">
-          <span class="pcard__num">02</span>
-          <div class="pcard__body">
-            <h3 class="pcard__title">Product Landing Page</h3>
-            <p class="pcard__desc">A high-converting landing page for a fictional product. Features a hero section, feature grid, testimonials, and a call-to-action block with a mobile-first layout.</p>
-            <div class="pcard__tags">
-              <span class="tag">UI</span><span class="tag">Responsive</span><span class="tag">CSS</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="pcard">
-          <span class="pcard__num">03</span>
-          <div class="pcard__body">
-            <h3 class="pcard__title">Blog Layout</h3>
-            <p class="pcard__desc">A structured blog layout with sidebar navigation, post previews, and a clean reading view. Designed for readability with optimised line length and spacing.</p>
-            <div class="pcard__tags">
-              <span class="tag">Content</span><span class="tag">Layout</span><span class="tag">HTML</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="pcard">
-          <span class="pcard__num">04</span>
-          <div class="pcard__body">
-            <h3 class="pcard__title">Mini Web App</h3>
-            <p class="pcard__desc">A small interactive browser-based tool. Focused on clean state management, clear UI feedback, and making JavaScript feel natural through thoughtful interactions.</p>
-            <div class="pcard__tags">
-              <span class="tag">JavaScript</span><span class="tag">Interaction</span><span class="tag">UX</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="prevBtn" aria-label="Previous project">&#8592;</button>
-        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Project indicators"></div>
-        <button class="carousel-btn" id="nextBtn" aria-label="Next project">&#8594;</button>
-      </div>
-    </section>
-
-    <!-- Templates -->
-    <section id="templates" class="section section--alt">
-      <div class="container">
-        <div class="section__hd">
-          <span class="eyebrow">Website Templates</span>
-          <h2 class="section__title">Ready-to-use templates for sale.</h2>
-          <p class="section__desc">Each template is hand-crafted with clean HTML and CSS. You get the full source files, a clear folder structure, and a layout you can start using right away.</p>
-        </div>
-
-        <div class="tgrid">
-          <div class="tcard">
-            <div class="tcard__preview tcard__preview--portfolio" aria-hidden="true">
-              <div class="tp tp--navy"></div>
-              <div class="tp tp--dim"></div>
-              <div class="tp tp--blue"></div>
-              <div class="tp tp--outline"></div>
-            </div>
-            <div class="tcard__body">
-              <span class="tcard__type">Creator Portfolio</span>
-              <h3 class="tcard__title">Studio Portfolio</h3>
-              <p class="tcard__desc">A minimal portfolio layout built for creatives who want their work to speak for itself.</p>
-              <ul class="tcard__list">
-                <li>Project showcase sections</li>
-                <li>About &amp; contact layout</li>
-                <li>Mobile-first styling</li>
-              </ul>
-              <div class="tcard__foot">
-                <span class="tcard__price">$29</span>
-                <a href="mailto:kartikay@example.com?subject=Studio Portfolio Template" class="btn btn--primary btn--sm">Buy Template</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="tcard tcard--featured">
-            <div class="tcard__badge">Featured</div>
-            <div class="tcard__preview tcard__preview--business" aria-hidden="true">
-              <div class="tp tp--navy tp--wide"></div>
-              <div class="tp tp--dim"></div>
-              <div class="tp tp--blue"></div>
-            </div>
-            <div class="tcard__body">
-              <span class="tcard__type">Small Business</span>
-              <h3 class="tcard__title">Launch Service</h3>
-              <p class="tcard__desc">Everything a small service business needs to launch online quickly and professionally.</p>
-              <ul class="tcard__list">
-                <li>Hero and service blocks</li>
-                <li>Pricing-ready sections</li>
-                <li>Lead capture structure</li>
-              </ul>
-              <div class="tcard__foot">
-                <span class="tcard__price">$39</span>
-                <a href="mailto:kartikay@example.com?subject=Launch Service Template" class="btn btn--primary btn--sm">Buy Template</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="tcard">
-            <div class="tcard__preview tcard__preview--shop" aria-hidden="true">
-              <div class="tp tp--navy"></div>
-              <div class="tp tp--dim"></div>
-              <div class="tp tp--dim"></div>
-              <div class="tp tp--blue"></div>
-              <div class="tp tp--outline"></div>
-              <div class="tp tp--outline"></div>
-            </div>
-            <div class="tcard__body">
-              <span class="tcard__type">Online Shop</span>
-              <h3 class="tcard__title">Product Shelf</h3>
-              <p class="tcard__desc">A sleek product display layout that makes it easy to show what you sell and convert browsers into buyers.</p>
-              <ul class="tcard__list">
-                <li>Product grid layout</li>
-                <li>Feature comparison section</li>
-                <li>Checkout link structure</li>
-              </ul>
-              <div class="tcard__foot">
-                <span class="tcard__price">$49</span>
-                <a href="mailto:kartikay@example.com?subject=Product Shelf Template" class="btn btn--primary btn--sm">Buy Template</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="divider"></div>
 
     <!-- About -->
     <section id="about" class="section">
-      <div class="container">
-        <div class="about">
-          <div class="about__content">
-            <span class="eyebrow">About me</span>
-            <h2 class="section__title">Focused on learning,<br>building, and improving.</h2>
-            <p class="about__text">I am interested in creating useful websites and applications with a clean visual style, clear structure, and reliable user experience. Every project is an opportunity to learn something new and apply it meaningfully.</p>
-            <a href="mailto:kartikay@example.com" class="btn btn--primary">Get in touch &rarr;</a>
+      <div class="section__inner section__inner--narrow">
+        <div class="section-label">
+          <div class="section-label__line"></div>
+          <span class="section-label__text">About</span>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <h2 class="about__heading">Building at the intersection of data and creativity.</h2>
+            <p class="about__para">I work as a Data Engineer &mdash; designing pipelines, warehouses, and platforms that power business decisions. Outside work, I'm building games and developer tools that scratch my own itch.</p>
+            <p class="about__para">I believe the best engineers aren't just coders &mdash; they're systems thinkers who understand <em>why</em> things are built, not just how.</p>
+          </div>
+          <div class="about-avatar" aria-hidden="true">
+            <span class="about-avatar__icon">👤</span>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-card__label">Data Engineering</div>
+            <div class="skill-card__tags">
+              <span class="stag">Python</span>
+              <span class="stag">PySpark</span>
+              <span class="stag">SQL</span>
+              <span class="stag">Hive</span>
+              <span class="stag">Airflow</span>
+              <span class="stag">Data Lakes</span>
+              <span class="stag">ETL</span>
+              <span class="stag">Warehousing</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__label">Game Development</div>
+            <div class="skill-card__tags">
+              <span class="stag">Godot 4</span>
+              <span class="stag">Blender</span>
+              <span class="stag">GDScript</span>
+              <span class="stag">Game Design</span>
+              <span class="stag">3D Modelling</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card__label">Software</div>
+            <div class="skill-card__tags">
+              <span class="stag">FastAPI</span>
+              <span class="stag">Next.js</span>
+              <span class="stag">REST APIs</span>
+              <span class="stag">Git</span>
+              <span class="stag">Docker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="section__inner section__inner--wide">
+        <div class="section-label">
+          <div class="section-label__line"></div>
+          <span class="section-label__text">Projects</span>
+        </div>
+
+        <div class="projects-header">
+          <h2 class="projects__heading">Things I've built</h2>
+          <div class="filter-group" role="group" aria-label="Filter projects">
+            <button class="filter-btn active" data-filter="All">All</button>
+            <button class="filter-btn" data-filter="Data">Data</button>
+            <button class="filter-btn" data-filter="Games">Games</button>
+            <button class="filter-btn" data-filter="Software">Software</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <div class="pcard" data-category="Data">
+            <div class="pcard__cat">Data</div>
+            <h3 class="pcard__title">Data Lake Orchestrator</h3>
+            <p class="pcard__desc">Automated ingestion pipeline across 50+ source systems using PySpark and Hive.</p>
+            <div class="pcard__tags">
+              <span class="ptag">Python</span><span class="ptag">PySpark</span><span class="ptag">Hive</span>
+            </div>
           </div>
 
-          <div class="about__stats">
-            <div class="stat">
-              <span class="stat__num gradient-text">4+</span>
-              <span class="stat__label">Projects Built</span>
-            </div>
-            <div class="stat">
-              <span class="stat__num gradient-text">3</span>
-              <span class="stat__label">Templates Available</span>
-            </div>
-            <div class="stat">
-              <span class="stat__num gradient-text">&#8734;</span>
-              <span class="stat__label">Things to Learn</span>
+          <div class="pcard" data-category="Data">
+            <div class="pcard__cat">Data</div>
+            <h3 class="pcard__title">ETL Framework</h3>
+            <p class="pcard__desc">Reusable ETL abstraction layer for enterprise data warehousing.</p>
+            <div class="pcard__tags">
+              <span class="ptag">Python</span><span class="ptag">SQL</span><span class="ptag">Airflow</span>
             </div>
           </div>
+
+          <div class="pcard" data-category="Games">
+            <div class="pcard__cat">Games</div>
+            <h3 class="pcard__title">Echoes of the Rift</h3>
+            <p class="pcard__desc">A 3D mobile adventure game built solo in Godot 4 with original assets.</p>
+            <div class="pcard__tags">
+              <span class="ptag">Godot 4</span><span class="ptag">Blender</span><span class="ptag">GDScript</span>
+            </div>
+          </div>
+
+          <div class="pcard" data-category="Games">
+            <div class="pcard__cat">Games</div>
+            <h3 class="pcard__title">Pixel Dungeon Prototype</h3>
+            <p class="pcard__desc">Procedurally generated dungeon crawler &mdash; a weekend jam project.</p>
+            <div class="pcard__tags">
+              <span class="ptag">Godot 4</span><span class="ptag">Game Design</span>
+            </div>
+          </div>
+
+          <div class="pcard" data-category="Software">
+            <div class="pcard__cat">Software</div>
+            <h3 class="pcard__title">QueryCraft</h3>
+            <p class="pcard__desc">Developer tool that converts natural language to SQL using LLMs.</p>
+            <div class="pcard__tags">
+              <span class="ptag">Python</span><span class="ptag">LLM</span><span class="ptag">FastAPI</span>
+            </div>
+          </div>
+
+          <div class="pcard" data-category="Software">
+            <div class="pcard__cat">Software</div>
+            <h3 class="pcard__title">Portfolio Site</h3>
+            <p class="pcard__desc">This site &mdash; designed with intention, built with care.</p>
+            <div class="pcard__tags">
+              <span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Blog preview -->
+    <section id="blog" class="section">
+      <div class="section__inner section__inner--narrow">
+        <div class="section-label">
+          <div class="section-label__line"></div>
+          <span class="section-label__text">Blog</span>
+        </div>
+
+        <div class="blog-header">
+          <h2 class="blog__heading">Writing</h2>
+          <a href="blog.html" class="see-all">All posts &rarr;</a>
+        </div>
+
+        <div class="posts-list">
+          <a href="blog.html" class="post-row">
+            <div class="post-row__content">
+              <div class="post-row__title">How I structure large-scale ETL pipelines at work</div>
+              <div class="post-row__meta">
+                <span>Jun 2026</span><span class="meta-dot">&middot;</span>
+                <span>6 min read</span><span class="meta-dot">&middot;</span>
+                <span class="post-row__cat">Data</span>
+              </div>
+            </div>
+            <span class="post-row__arrow">&rarr;</span>
+          </a>
+          <div class="post-divider"></div>
+
+          <a href="blog.html" class="post-row">
+            <div class="post-row__content">
+              <div class="post-row__title">Solo game dev: what nobody tells you about scope</div>
+              <div class="post-row__meta">
+                <span>May 2026</span><span class="meta-dot">&middot;</span>
+                <span>4 min read</span><span class="meta-dot">&middot;</span>
+                <span class="post-row__cat">Games</span>
+              </div>
+            </div>
+            <span class="post-row__arrow">&rarr;</span>
+          </a>
+          <div class="post-divider"></div>
+
+          <a href="blog.html" class="post-row">
+            <div class="post-row__content">
+              <div class="post-row__title">Building a second brain as a data engineer</div>
+              <div class="post-row__meta">
+                <span>Apr 2026</span><span class="meta-dot">&middot;</span>
+                <span>5 min read</span><span class="meta-dot">&middot;</span>
+                <span class="post-row__cat">Dev</span>
+              </div>
+            </div>
+            <span class="post-row__arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="section__inner section__inner--narrow">
+        <div class="section-label">
+          <div class="section-label__line"></div>
+          <span class="section-label__text">Contact</span>
+        </div>
+
+        <h2 class="contact__heading">Let's talk</h2>
+        <p class="contact__sub">Always open to interesting conversations &mdash; data, games, software, or ideas worth building.</p>
+
+        <div class="contact-cards">
+          <a href="mailto:kartikays89@gmail.com" class="contact-card">
+            <span class="contact-card__icon">&#9993;</span>
+            <div>
+              <div class="contact-card__label">Email</div>
+              <div class="contact-card__value">kartikays89@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://github.com/kartikay89" target="_blank" rel="noopener" class="contact-card">
+            <span class="contact-card__icon">&#9135;</span>
+            <div>
+              <div class="contact-card__label">GitHub</div>
+              <div class="contact-card__value">github.com/kartikay89</div>
+            </div>
+          </a>
+          <a href="#" class="contact-card">
+            <span class="contact-card__icon contact-card__icon--in">in</span>
+            <div>
+              <div class="contact-card__label">LinkedIn</div>
+              <div class="contact-card__value">linkedin.com/in/kartikay</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
 
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__name">Kartikay Singh</span>
-      <nav class="footer__nav" aria-label="Footer navigation">
+    <div class="footer__inner">
+      <span class="footer__copy">&copy; 2026 Kartikay</span>
+      <nav class="footer__nav" aria-label="Secondary">
         <a href="blog.html"  class="footer__link">Blog</a>
         <a href="notes.html" class="footer__link">Notes</a>
       </nav>
-      <span class="footer__copy">&copy; 2025 &mdash; Built with care</span>
+      <span class="footer__tagline">Built with intention.</span>
     </div>
   </footer>
 
