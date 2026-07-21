@@ -48,9 +48,11 @@ interface SidebarProps {
   activeNav: string;
   onNavChange: (id: string) => void;
   tasks: { areaId: string }[];
+  activeNoteCategory: string | null;
+  onNoteCategory: (category: string) => void;
 }
 
-export function Sidebar({ areas, notes, selectedAreaId, onSelectArea, activeNav, onNavChange, tasks }: SidebarProps) {
+export function Sidebar({ areas, notes, selectedAreaId, onSelectArea, activeNav, onNavChange, tasks, activeNoteCategory, onNoteCategory }: SidebarProps) {
   const getCount = (areaId: string) => tasks.filter((t) => t.areaId === areaId).length;
   const getNoteCount = (category: string) =>
     category === "all" ? notes.length : notes.filter((n) => n.category === category).length;
@@ -123,14 +125,21 @@ export function Sidebar({ areas, notes, selectedAreaId, onSelectArea, activeNav,
         {NOTE_CATEGORIES.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
-            className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xl text-sm mb-0.5 transition-colors text-left hover:bg-gray-50"
+            onClick={() => onNoteCategory(id)}
+            className={clsx(
+              "w-full flex items-center gap-2 px-2 py-1.5 rounded-xl text-sm mb-0.5 transition-colors text-left",
+              activeNoteCategory === id ? "bg-blue-50 text-blue-700 font-medium" : "hover:bg-gray-50"
+            )}
           >
-            <Icon size={13} className="text-gray-500 flex-shrink-0" />
-            <span className="flex-1 text-gray-700 truncate text-xs">{label}</span>
+            <Icon size={13} className={activeNoteCategory === id ? "text-blue-600" : "text-gray-500"} />
+            <span className="flex-1 truncate text-xs">{label}</span>
             <span className="text-xs text-gray-400 font-medium">{getNoteCount(id)}</span>
           </button>
         ))}
-        <button className="w-full flex items-center gap-2 px-2 py-1.5 text-xs text-blue-600 hover:bg-blue-50 rounded-xl mt-0.5 transition-colors font-medium">
+        <button
+          onClick={() => onNoteCategory("all")}
+          className="w-full flex items-center gap-2 px-2 py-1.5 text-xs text-blue-600 hover:bg-blue-50 rounded-xl mt-0.5 transition-colors font-medium"
+        >
           <Plus size={11} /> New Note
         </button>
       </div>
