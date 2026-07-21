@@ -3,14 +3,17 @@ import { Sidebar } from "../components/app-shell/Sidebar";
 import { TodayDashboard } from "../components/dashboard/TodayDashboard";
 import { TaskDetailPanel } from "../components/tasks/TaskDetailPanel";
 import { NewTaskDialog } from "../components/tasks/NewTaskDialog";
+import { BottomNav } from "../components/mobile/BottomNav";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { seedTasks, seedAreas } from "../data/seed";
+import { usePomodoro } from "../hooks/usePomodoro";
+import { seedTasks, seedAreas, seedNotes } from "../data/seed";
 import { sortTasks } from "../lib/sorting";
-import type { Task, LifeArea } from "../types";
+import type { Task, LifeArea, Note } from "../types";
 
 export default function App() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("ff_tasks", seedTasks);
   const [areas] = useLocalStorage<LifeArea[]>("ff_areas", seedAreas);
+  const [notes, setNotes] = useLocalStorage<Note[]>("ff_notes", seedNotes);
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>("t1");
   const [runningTaskId, setRunningTaskId] = useState<string | null>(null);
   const [filterAreaId, setFilterAreaId] = useState<string | null>(null);
@@ -19,6 +22,23 @@ export default function App() {
   const [activeNav, setActiveNav] = useState("today");
   const [urgentConfirm, setUrgentConfirm] = useState<{ targetTask: Task } | null>(null);
 
+  // Lifted Pomodoro timer — single source of truth
+  const timer = usePomodoro({
+    taskId: runningTaskId ?? "",
+    onComplete: useCallback(() => {
+      if (runningTaskId) {
+        setTasks((prev) =>
+          prev.map((t) =>
+            t.id === runningTaskId
+              ? { ...t, completedPomodoros: t.completedPomodoros + 1, focusedSeconds: t.focusedSeconds + 25 * 60 }
+              : t
+          )
+        );
+        setRunningTaskId(null);
+      }
+    }, [runningTaskId, setTasks]),
+  });
+
   const sortedTasks = sortTasks(tasks);
   const selectedTask = tasks.find((t) => t.id === selectedTaskId) ?? null;
   const selectedArea = selectedTask ? (areas.find((a) => a.id === selectedTask.areaId) ?? areas[0]) : null;
@@ -26,18 +46,29 @@ export default function App() {
 
   const handleToggleTimer = useCallback(
     (task: Task) => {
-      if (task.id === runningTaskId) {
-        setRunningTaskId(null);
+      // If this task's timer is running, pause it
+      if (task.id === runningTaskId && timer.status === "running") {
+        timer.pause();
         return;
       }
+      // If this task is paused (same task), resume it
+      if (task.id === runningTaskId && timer.status === "paused") {
+        timer.start();
+        return;
+      }
+      // Starting a different task — check urgent guard
       if (hasUrgentPending && task.priority !== "urgent" && task.status !== "completed") {
         setUrgentConfirm({ targetTask: task });
         return;
       }
+      // Reset any existing timer and start new one
+      timer.reset();
       setRunningTaskId(task.id);
       setSelectedTaskId(task.id);
+      // Small delay to let state settle before starting
+      setTimeout(() => timer.start(), 50);
     },
-    [runningTaskId, hasUrgentPending]
+    [runningTaskId, timer, hasUrgentPending]
   );
 
   const handlePomodoroComplete = useCallback(
@@ -45,11 +76,7 @@ export default function App() {
       setTasks((prev) =>
         prev.map((t) =>
           t.id === taskId
-            ? {
-                ...t,
-                completedPomodoros: t.completedPomodoros + 1,
-                focusedSeconds: t.focusedSeconds + 25 * 60,
-              }
+            ? { ...t, completedPomodoros: t.completedPomodoros + 1, focusedSeconds: t.focusedSeconds + 25 * 60 }
             : t
         )
       );
@@ -82,62 +109,95 @@ export default function App() {
     [setTasks]
   );
 
+  const handleAddNote = useCallback(
+    (note: Note) => {
+      setNotes((prev) => [note, ...prev]);
+    },
+    [setNotes]
+  );
+
+  const handleUpdateNote = useCallback(
+    (updated: Note) => {
+      setNotes((prev) => prev.map((n) => (n.id === updated.id ? updated : n)));
+    },
+    [setNotes]
+  );
+
+  void handleAddNote;
+  void handleUpdateNote;
+  void handlePomodoroComplete;
+
   const urgentTask = tasks.find((t) => t.priority === "urgent" && t.status !== "completed");
 
   return (
     <div className="flex h-screen bg-white overflow-hidden" style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
-      <Sidebar
-        areas={areas}
-        tasks={tasks}
-        selectedAreaId={filterAreaId}
-        onSelectArea={setFilterAreaId}
-        activeNav={activeNav}
-        onNavChange={setActiveNav}
-      />
-
-      {activeNav === "today" ? (
-        <TodayDashboard
-          tasks={sortedTasks}
+      {/* Sidebar — hidden on mobile */}
+      <div className="hidden md:flex">
+        <Sidebar
           areas={areas}
+          tasks={tasks}
+          notes={notes}
           selectedAreaId={filterAreaId}
-          selectedPriority={filterPriority}
-          selectedTaskId={selectedTaskId}
-          runningTaskId={runningTaskId}
-          onNewTask={() => setShowNewTask(true)}
-          onAreaChange={setFilterAreaId}
-          onPriorityChange={setFilterPriority}
-          onSelectTask={(task) => setSelectedTaskId(task.id)}
-          onToggleTimer={handleToggleTimer}
-          onToggleComplete={handleToggleComplete}
+          onSelectArea={setFilterAreaId}
+          activeNav={activeNav}
+          onNavChange={setActiveNav}
         />
-      ) : (
-        <div className="flex-1 flex items-center justify-center bg-gray-50">
-          <div className="text-center">
-            <p className="text-2xl font-bold text-gray-300 mb-2">
-              {activeNav.charAt(0).toUpperCase() + activeNav.slice(1)}
-            </p>
-            <p className="text-gray-400 text-sm">Coming soon</p>
-          </div>
-        </div>
-      )}
+      </div>
 
-      {selectedTask && selectedArea && (
-        <TaskDetailPanel
-          task={selectedTask}
-          area={selectedArea}
-          areas={areas}
-          onClose={() => setSelectedTaskId(null)}
-          onUpdate={handleUpdateTask}
-          onPomodoroComplete={handlePomodoroComplete}
-          onComplete={handleToggleComplete}
-        />
-      )}
+      {/* Main content */}
+      <div className="flex flex-1 overflow-hidden">
+        {activeNav === "today" ? (
+          <TodayDashboard
+            tasks={sortedTasks}
+            areas={areas}
+            selectedAreaId={filterAreaId}
+            selectedPriority={filterPriority}
+            selectedTaskId={selectedTaskId}
+            runningTaskId={runningTaskId}
+            timerStatus={timer.status}
+            onNewTask={() => setShowNewTask(true)}
+            onAreaChange={setFilterAreaId}
+            onPriorityChange={setFilterPriority}
+            onSelectTask={(task) => setSelectedTaskId(task.id)}
+            onToggleTimer={handleToggleTimer}
+            onToggleComplete={handleToggleComplete}
+          />
+        ) : (
+          <div className="flex-1 flex items-center justify-center bg-gray-50">
+            <div className="text-center">
+              <p className="text-2xl font-bold text-gray-300 mb-2">
+                {activeNav.charAt(0).toUpperCase() + activeNav.slice(1)}
+              </p>
+              <p className="text-gray-400 text-sm">Coming soon</p>
+            </div>
+          </div>
+        )}
+
+        {selectedTask && selectedArea && (
+          <TaskDetailPanel
+            task={selectedTask}
+            area={selectedArea}
+            areas={areas}
+            timer={timer}
+            runningTaskId={runningTaskId}
+            onClose={() => setSelectedTaskId(null)}
+            onUpdate={handleUpdateTask}
+            onPomodoroStart={() => {
+              setRunningTaskId(selectedTask.id);
+              timer.start();
+            }}
+            onComplete={handleToggleComplete}
+          />
+        )}
+      </div>
+
+      {/* Mobile bottom nav */}
+      <BottomNav activeNav={activeNav} onNavChange={setActiveNav} onQuickAdd={() => setShowNewTask(true)} />
 
       {showNewTask && (
         <NewTaskDialog areas={areas} onSave={handleAddTask} onClose={() => setShowNewTask(false)} />
       )}
 
-      {/* Urgent task confirmation dialog */}
       {urgentConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
           <div className="bg-white rounded-2xl p-6 w-full max-w-sm mx-4 shadow-2xl">
@@ -155,8 +215,10 @@ export default function App() {
               </button>
               <button
                 onClick={() => {
+                  timer.reset();
                   setRunningTaskId(urgentConfirm.targetTask.id);
                   setSelectedTaskId(urgentConfirm.targetTask.id);
+                  setTimeout(() => timer.start(), 50);
                   setUrgentConfirm(null);
                 }}
                 className="flex-1 py-2.5 bg-blue-600 rounded-xl text-sm font-semibold text-white hover:bg-blue-700"

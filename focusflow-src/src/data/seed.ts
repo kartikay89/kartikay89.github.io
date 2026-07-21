@@ -1,4 +1,4 @@
-import type { Task, LifeArea } from "../types";
+import type { Task, LifeArea, Note } from "../types";
 
 export const seedAreas: LifeArea[] = [
   { id: "work", name: "Work / Office", icon: "Briefcase", color: "blue" },
@@ -108,4 +108,57 @@ export const seedScheduled = [
   { id: "s1", time: "10:00 AM", title: "Team Standup Meeting", areaId: "work" },
   { id: "s2", time: "02:00 PM", title: "Client Call", areaId: "business" },
   { id: "s3", time: "04:30 PM", title: "Gym Session", areaId: "health" },
+];
+
+export const seedNotes: Note[] = [
+  {
+    id: "n1",
+    title: "Python Function",
+    content: `def fibonacci(n):\n    """Return Fibonacci sequence up to n terms."""\n    a, b = 0, 1\n    sequence = []\n    for _ in range(n):\n        sequence.append(a)\n        a, b = b, a + b\n    return sequence`,
+    category: "code",
+    tags: ["python", "algorithm", "fibonacci"],
+    language: "python",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "n2",
+    title: "SQL Query",
+    content: `SELECT\n    user_id,\n    COUNT(*) as total_orders,\n    SUM(amount) as revenue\nFROM orders\nWHERE created_at >= '2026-01-01'\nGROUP BY user_id\nORDER BY revenue DESC;`,
+    category: "code",
+    tags: ["sql", "analytics"],
+    language: "sql",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "n3",
+    title: "React Component",
+    content: `import React, { useState } from 'react';\n\nconst Counter = () => {\n  const [count, setCount] = useState(0);\n  return (\n    <div>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount(c => c + 1)}>+</button>\n    </div>\n  );\n};\n\nexport default Counter;`,
+    category: "code",
+    tags: ["react", "typescript"],
+    language: "javascript",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "n4",
+    title: "Ideas for FocusFlow",
+    content: "- Add dark mode\n- Calendar integration\n- Habit tracker\n- Weekly review screen",
+    category: "inbox",
+    tags: ["ideas", "product"],
+    language: "",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "n5",
+    title: "Daily reflection",
+    content: "Today was productive. Completed 3 pomodoros on the FocusFlow project. Need to work more on the mobile layout tomorrow.",
+    category: "journal",
+    tags: ["daily"],
+    language: "",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
 ];

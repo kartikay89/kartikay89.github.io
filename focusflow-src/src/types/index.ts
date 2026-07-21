@@ -43,3 +43,16 @@ export interface TimerState {
   elapsedSeconds: number;
   pomodoroSeconds: number; // 25 * 60 by default
 }
+
+export type NoteCategory = "all" | "inbox" | "journal" | "code";
+
+export interface Note {
+  id: string;
+  title: string;
+  content: string;
+  category: NoteCategory;
+  tags: string[];
+  language: string; // for code snippets e.g. "python", "javascript", "sql"
+  createdAt: string;
+  updatedAt: string;
+}

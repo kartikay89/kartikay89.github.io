@@ -1,3 +1,4 @@
+// src/hooks/usePomodoro.ts
 import { useState, useEffect, useCallback, useRef } from "react";
 import { POMODORO_DURATION } from "../lib/constants";
 
@@ -8,14 +9,29 @@ interface UsePomodoroOptions {
 
 interface PomodoroState {
   status: "idle" | "running" | "paused";
-  startedAt: number | null;
-  pausedAt: number | null;
-  elapsedSeconds: number;
+  startedAt: number | null;   // epoch ms when current run began
+  baseElapsed: number;        // accumulated seconds from previous pauses only
+}
+
+export interface TimerControls {
+  status: PomodoroState["status"];
+  remainingSeconds: number;
+  progress: number; // 0-1
+  start: () => void;
+  pause: () => void;
+  reset: () => void;
 }
 
 const STORAGE_KEY = "ff_timer";
 
-export function usePomodoro({ taskId, onComplete }: UsePomodoroOptions) {
+function getElapsed(s: PomodoroState): number {
+  if (s.status === "running" && s.startedAt !== null) {
+    return s.baseElapsed + Math.floor((Date.now() - s.startedAt) / 1000);
+  }
+  return s.baseElapsed;
+}
+
+export function usePomodoro({ taskId, onComplete }: UsePomodoroOptions): TimerControls {
   const [state, setState] = useState<PomodoroState>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -24,51 +40,57 @@ export function usePomodoro({ taskId, onComplete }: UsePomodoroOptions) {
         if (parsed.taskId === taskId) return parsed.state;
       }
     } catch {}
-    return { status: "idle", startedAt: null, pausedAt: null, elapsedSeconds: 0 };
+    return { status: "idle", startedAt: null, baseElapsed: 0 };
   });
 
+  const [, setTick] = useState(0);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
-
-  const remainingSeconds = Math.max(0, POMODORO_DURATION - state.elapsedSeconds);
-  const progress = state.elapsedSeconds / POMODORO_DURATION;
 
   useEffect(() => {
     if (state.status !== "running") return;
     const interval = setInterval(() => {
-      setState((prev) => {
-        if (prev.status !== "running" || !prev.startedAt) return prev;
-        const now = Date.now();
-        const elapsed = Math.floor((now - prev.startedAt) / 1000) + (prev.elapsedSeconds ?? 0);
-        if (elapsed >= POMODORO_DURATION) {
-          onCompleteRef.current();
-          return { status: "idle", startedAt: null, pausedAt: null, elapsedSeconds: 0 };
-        }
-        return { ...prev, elapsedSeconds: elapsed };
-      });
+      const elapsed = getElapsed(state);
+      if (elapsed >= POMODORO_DURATION) {
+        onCompleteRef.current();
+        setState({ status: "idle", startedAt: null, baseElapsed: 0 });
+        localStorage.removeItem(STORAGE_KEY);
+      } else {
+        setTick((t) => t + 1);
+      }
     }, 500);
     return () => clearInterval(interval);
-  }, [state.status]);
+  }, [state.status, state.startedAt, state.baseElapsed]);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ taskId, state }));
   }, [taskId, state]);
 
+  const elapsed = getElapsed(state);
+  const remainingSeconds = Math.max(0, POMODORO_DURATION - elapsed);
+  const progress = Math.min(1, elapsed / POMODORO_DURATION);
+
   const start = useCallback(() => {
     setState((prev) => ({
       status: "running",
       startedAt: Date.now(),
-      pausedAt: null,
-      elapsedSeconds: prev.status === "paused" ? prev.elapsedSeconds : 0,
+      baseElapsed: prev.status === "paused" ? prev.baseElapsed : 0,
     }));
   }, []);
 
   const pause = useCallback(() => {
-    setState((prev) => ({ ...prev, status: "paused", pausedAt: Date.now() }));
+    setState((prev) => {
+      if (prev.status !== "running" || prev.startedAt === null) return prev;
+      return {
+        status: "paused",
+        startedAt: null,
+        baseElapsed: prev.baseElapsed + Math.floor((Date.now() - prev.startedAt) / 1000),
+      };
+    });
   }, []);
 
   const reset = useCallback(() => {
-    setState({ status: "idle", startedAt: null, pausedAt: null, elapsedSeconds: 0 });
+    setState({ status: "idle", startedAt: null, baseElapsed: 0 });
     localStorage.removeItem(STORAGE_KEY);
   }, []);
 
