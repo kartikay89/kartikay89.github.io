@@ -4,11 +4,12 @@ import { TodayDashboard } from "../components/dashboard/TodayDashboard";
 import { TaskDetailPanel } from "../components/tasks/TaskDetailPanel";
 import { NewTaskDialog } from "../components/tasks/NewTaskDialog";
 import { BottomNav } from "../components/mobile/BottomNav";
+import { NotesView } from "../components/notes/NotesView";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { usePomodoro } from "../hooks/usePomodoro";
 import { seedTasks, seedAreas, seedNotes } from "../data/seed";
 import { sortTasks } from "../lib/sorting";
-import type { Task, LifeArea, Note } from "../types";
+import type { Task, LifeArea, Note, NoteCategory } from "../types";
 
 export default function App() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("ff_tasks", seedTasks);
@@ -20,6 +21,7 @@ export default function App() {
   const [filterPriority, setFilterPriority] = useState<string | null>(null);
   const [showNewTask, setShowNewTask] = useState(false);
   const [activeNav, setActiveNav] = useState("today");
+  const [activeNoteCategory, setActiveNoteCategory] = useState<string | null>(null);
   const [urgentConfirm, setUrgentConfirm] = useState<{ targetTask: Task } | null>(null);
 
   // Lifted Pomodoro timer — single source of truth
@@ -123,8 +125,13 @@ export default function App() {
     [setNotes]
   );
 
-  void handleAddNote;
-  void handleUpdateNote;
+  const handleDeleteNote = useCallback(
+    (id: string) => {
+      setNotes((prev) => prev.filter((n) => n.id !== id));
+    },
+    [setNotes]
+  );
+
   void handlePomodoroComplete;
 
   const urgentTask = tasks.find((t) => t.priority === "urgent" && t.status !== "completed");
@@ -140,13 +147,23 @@ export default function App() {
           selectedAreaId={filterAreaId}
           onSelectArea={setFilterAreaId}
           activeNav={activeNav}
-          onNavChange={setActiveNav}
+          onNavChange={(id) => { setActiveNav(id); setActiveNoteCategory(null); }}
+          activeNoteCategory={activeNoteCategory}
+          onNoteCategory={(cat) => { setActiveNoteCategory(cat); setActiveNav("today"); }}
         />
       </div>
 
       {/* Main content */}
       <div className="flex flex-1 overflow-hidden">
-        {activeNav === "today" ? (
+        {activeNoteCategory !== null ? (
+          <NotesView
+            notes={notes}
+            initialCategory={activeNoteCategory as NoteCategory | "all"}
+            onAddNote={handleAddNote}
+            onUpdateNote={handleUpdateNote}
+            onDeleteNote={handleDeleteNote}
+          />
+        ) : activeNav === "today" ? (
           <TodayDashboard
             tasks={sortedTasks}
             areas={areas}
@@ -172,8 +189,7 @@ export default function App() {
             </div>
           </div>
         )}
-
-        {selectedTask && selectedArea && (
+        {activeNoteCategory === null && selectedTask && selectedArea && (
           <TaskDetailPanel
             task={selectedTask}
             area={selectedArea}
@@ -188,7 +204,8 @@ export default function App() {
             }}
             onComplete={handleToggleComplete}
           />
-        )}
+        )
+        }
       </div>
 
       {/* Mobile bottom nav */}
