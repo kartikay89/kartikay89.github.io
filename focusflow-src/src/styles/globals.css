@@ -14,3 +14,12 @@ body {
   background: #ffffff;
   color: #0f172a;
 }
+
+/* Safe area for mobile bottom nav */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pb-safe {
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+}
