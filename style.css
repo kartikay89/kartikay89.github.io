@@ -343,6 +343,16 @@ ul  { list-style: none; }
 
 .pcard__tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
+.pcard__link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.pcard__link:hover { text-decoration: underline; }
+
 .ptag {
   font-size: 11px;
   background: var(--tag-bg);
