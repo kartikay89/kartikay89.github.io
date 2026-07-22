@@ -10,6 +10,12 @@ import { useUiStore } from "@/store/uiStore";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/db/database";
 import { initializeDatabase } from "@/db/init";
+import { useAuthStore } from "@/store/authStore";
+import { supabaseConfigured } from "@/lib/supabase";
+import { SyncCoordinator } from "@/db/sync/SyncCoordinator";
+import { MigrationService, type LocalDataSummary } from "@/db/sync/MigrationService";
+import { AuthPage } from "@/features/auth/AuthPage";
+import { MigrationDialog } from "@/features/auth/MigrationDialog";
 
 // Lazy-load pages
 const TodayPage = lazy(() => import("@/features/tasks/TodayPage"));
@@ -24,6 +30,8 @@ const MorePage = lazy(() => import("@/features/mobile/MorePage"));
 // Import task detail panel
 import { TaskDetailPanel } from "@/components/tasks/TaskDetailPanel";
 
+const AUTH_SKIP_KEY = "kartikay-os-auth-skipped";
+
 function PageLoader() {
   return (
     <div className="flex-1 flex items-center justify-center">
@@ -37,15 +45,48 @@ export default function App() {
   const { loadPersistedTimer } = useTimerStore();
   const { selectedTaskId, setSelectedTaskId, urgentWarning, setUrgentWarning } = useUiStore();
   const location = useLocation();
+  const { user, initialize } = useAuthStore();
+
+  const [showAuth, setShowAuth] = useState(false);
+  const [migrationSummary, setMigrationSummary] = useState<LocalDataSummary | null>(null);
 
   useEffect(() => {
-    initializeDatabase()
-      .then(() => loadPersistedTimer())
-      .then(() => setReady(true));
-
-    // Start the tick engine
+    async function boot() {
+      await initializeDatabase();
+      await loadPersistedTimer();
+      if (supabaseConfigured) {
+        await initialize();
+        const { session } = useAuthStore.getState();
+        if (!session && !localStorage.getItem(AUTH_SKIP_KEY)) {
+          setShowAuth(true);
+        }
+      }
+      setReady(true);
+    }
+    boot();
     startTickEngine(useTimerStore);
   }, []);
+
+  // When user signs in (or returns from OAuth redirect), check migration then sync
+  useEffect(() => {
+    if (!ready || !user) return;
+    setShowAuth(false);
+
+    async function onSignIn() {
+      if (!MigrationService.hasMigrated()) {
+        const hasLocal = await MigrationService.hasLocalData();
+        if (hasLocal) {
+          const summary = await MigrationService.getLocalSummary();
+          setMigrationSummary(summary);
+          return;
+        }
+        MigrationService.markMigrated();
+      }
+      await SyncCoordinator.sync(user!.id);
+    }
+
+    onSignIn();
+  }, [ready, user?.id]);
 
   const tasks = useLiveQuery(() => db.tasks.filter((t) => !t.deletedAt).toArray(), []) ?? [];
   const areas = useLiveQuery(() => db.lifeAreas.toArray(), []) ?? [];
@@ -53,7 +94,9 @@ export default function App() {
   const selectedTask = tasks.find((t) => t.id === selectedTaskId) ?? null;
   const selectedArea = selectedTask ? areas.find((a) => a.id === selectedTask.areaId) : undefined;
 
-  const showDetailPanel = selectedTask && selectedArea &&
+  const showDetailPanel =
+    selectedTask &&
+    selectedArea &&
     !location.pathname.startsWith("/notes") &&
     !location.pathname.startsWith("/settings") &&
     !location.pathname.startsWith("/areas") &&
@@ -74,11 +117,22 @@ export default function App() {
     );
   }
 
+  if (showAuth) {
+    return (
+      <AuthPage
+        onSkip={() => {
+          localStorage.setItem(AUTH_SKIP_KEY, "1");
+          setShowAuth(false);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="flex h-dvh bg-white overflow-hidden" style={{ fontFamily: "Inter, system-ui, -apple-system, sans-serif" }}>
       {/* Sidebar — desktop only */}
       <div className="hidden md:flex flex-shrink-0">
-        <Sidebar />
+        <Sidebar onSignIn={() => setShowAuth(true)} />
       </div>
 
       {/* Main content */}
@@ -119,6 +173,18 @@ export default function App() {
 
       {/* Toasts */}
       <ToastContainer />
+
+      {/* First-login migration dialog */}
+      {migrationSummary && user && (
+        <MigrationDialog
+          userId={user.id}
+          summary={migrationSummary}
+          onComplete={async () => {
+            setMigrationSummary(null);
+            await SyncCoordinator.sync(user.id);
+          }}
+        />
+      )}
 
       {/* Urgent task warning */}
       {urgentWarning && urgentTask && (

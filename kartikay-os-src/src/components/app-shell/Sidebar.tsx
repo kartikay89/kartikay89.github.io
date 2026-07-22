@@ -1,6 +1,7 @@
-import { LayoutDashboard, CheckSquare, Calendar, BarChart2, Settings, FolderOpen, FileText, RefreshCw, ChevronDown } from "lucide-react";
+import { LayoutDashboard, CheckSquare, Calendar, BarChart2, Settings, FolderOpen, FileText, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { Link, useLocation } from "react-router-dom";
+import { ProfileMenu } from "@/features/auth/ProfileMenu";
 
 const NAV = [
   { path: "/", label: "Today", icon: LayoutDashboard },
@@ -12,7 +13,7 @@ const NAV = [
   { path: "/notes", label: "Notes", icon: FileText },
 ];
 
-export function Sidebar() {
+export function Sidebar({ onSignIn }: { onSignIn?: () => void }) {
   const { pathname } = useLocation();
   const isActive = (path: string) => path === "/" ? pathname === "/" : pathname.startsWith(path);
 
@@ -69,13 +70,9 @@ export function Sidebar() {
         </button>
       </div>
 
-      {/* User */}
-      <div className="px-4 py-3 border-t border-gray-100 flex items-center gap-2.5 flex-shrink-0">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-          KS
-        </div>
-        <span className="text-xs font-medium text-gray-800 flex-1 truncate">Kartikay Singh</span>
-        <ChevronDown size={13} className="text-gray-400 flex-shrink-0" />
+      {/* User / auth */}
+      <div className="flex-shrink-0">
+        <ProfileMenu onSignIn={onSignIn} />
       </div>
     </aside>
   );

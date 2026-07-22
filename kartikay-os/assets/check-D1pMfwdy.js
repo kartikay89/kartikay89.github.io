@@ -1,6 +1,6 @@
-import{ae as e}from"./index-CdTuGtMv.js";/**
+import{af as c}from"./index-0ZjQ-xG2.js";/**
  * @license lucide-react v0.441.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const a=e("Check",[["path",{d:"M20 6 9 17l-5-5",key:"1gmf2c"}]]);export{a as C};
+ */const a=c("Check",[["path",{d:"M20 6 9 17l-5-5",key:"1gmf2c"}]]);export{a as C};
