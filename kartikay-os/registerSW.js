@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/kartikay-os/sw.js', { scope: '/kartikay-os/' })})}
