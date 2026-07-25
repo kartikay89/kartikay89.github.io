@@ -1,0 +1,46 @@
+name: Build & Deploy Kartikay OS
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "kartikay-os-src/**"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: kartikay-os-src/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: kartikay-os-src
+
+      - name: Build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+        run: npm run build
+        working-directory: kartikay-os-src
+
+      - name: Copy build output to /kartikay-os
+        run: |
+          rm -rf kartikay-os/
+          cp -r kartikay-os-src/dist/. kartikay-os/
+
+      - name: Commit and push built output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add kartikay-os/
+          git diff --staged --quiet && echo "No changes to deploy" || \
+            (git commit -m "deploy: rebuild kartikay-os [skip ci]" && git push)
